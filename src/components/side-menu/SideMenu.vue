@@ -120,13 +120,16 @@
 <script src="./side-menu.js"></script>
 
 <style lang="scss" scoped>
+    .horn-size {
+        size: 230px;
+    }
     .the-menu {
         position: relative;
-        background-color: $color-background-purple;
+        background-color: #FE5F55;;
         color: #fff;
         padding: 10px $spacing-s;
         width: $spacing-menu-width;
-        height: 100vh;
+        // height: 100vh;
         transition: width 0.3s;
 
         .toggle-btn {
@@ -184,7 +187,7 @@
                 .router-link-active,
                 &.router-link-active,
                 &--hoverable:hover { // router-link-active class is provided by vue and attaches to respective element automatically
-                    background-color: $color-background-lightpurple;
+                    background-color: #4F6367;
                 }
 
                 &__icon {
@@ -237,7 +240,7 @@
                 left: 58px;
                 max-height: 0;
                 transition: max-height ease .3s;
-                background-color: $color-background-purple;
+                background-color: #FE5F55;
                 border-radius: 8px;
                 z-index: $z-index-menu-floating-submenu;
 

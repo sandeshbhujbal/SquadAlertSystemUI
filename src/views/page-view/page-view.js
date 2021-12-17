@@ -1,12 +1,31 @@
-import Calendar from '@/components/schedule-calendar/calendar.vue'
+import BaseIcon from '@/components/base-icon/BaseIcon.vue'
 
+
+const PAGE_INPUTS = {
+    pagingEmailAddress: '',
+    severity: 'High',
+    summary: '',
+    details: ''
+}
 export default {
 	data: function (){
 		return {
-			width: '20%',
+            input: '',
+			width: '30%',
 			property: '',
 			sort: !1,
 			titles: ['Title', 'Title', 'Action'],
+            items: [{
+                value: 'High',
+                key: 0
+            },{
+                value: 'Medium',
+                key: 1
+            },{
+                value: 'Low',
+                key: 2
+            }],
+            pageInputs: { ...PAGE_INPUTS },
 			contents: [
 				{
 					title1: 'Content',
@@ -31,5 +50,10 @@ export default {
 			]
 		}
 	},
-	components: { Calendar }
+    methods: {
+        handleCreateInboundOrder() {
+
+        }
+    },
+	components: { BaseIcon }
 }

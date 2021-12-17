@@ -12,10 +12,17 @@ const router = new VueRouter({
 		{
 			path: '/',
 			name: 'HomePage',
-			component: loadComponent('page-view/PageView'),
-			meta: {
-				workflow: 'alertManagement'
-			}
+			component: loadComponent('home-view/HomeView')
+		},
+		{
+			path: '/page-view',
+			name: 'PageView',
+			component: loadComponent('page-view/PageView')
+		},
+		{
+			path: '/calendar-view',
+			name: 'CalendarView',
+			component: loadComponent('calendar-view/CalendarView')
 		}
 	]
 })

@@ -11,9 +11,11 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.16.5",
     "@blibli/blue-internal": "^1.19.1",
+    "axios": "^0.24.0",
     "babel-plugin-transform-vue-jsx": "^4.0.1",
     "core-js": "^3.6.5",
     "date-fns": "^2.27.0",
+    "element-ui": "^2.15.7",
     "pusher-js": "^7.0.3",
     "vue": "^2.6.11",
     "vue-cal": "^3.10.1",

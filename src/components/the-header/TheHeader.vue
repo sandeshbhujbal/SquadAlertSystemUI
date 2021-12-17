@@ -9,7 +9,7 @@
 				no-border
 				left-icon
 			>
-				<label slot="label"> User </label>
+				<label slot="label"> {{ currentUser }} </label>
 
 				<base-icon slot="left-icon" icon-name="User" />
 

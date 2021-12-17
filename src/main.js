@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import '@blibli/blue-internal/dist/blue-internal.min.css'
 import Blue from '@blibli/blue-internal/dist/blue-internal.min'
+import ElementUI from 'element-ui'
 
 import './assets/scss/main.scss'
 import './assets/scss/variables.scss'
@@ -11,6 +12,7 @@ import icons from '@blibli/blue-internal/dist/add-ons/icons'
 
 Vue.use(Blue)
 Vue.use(icons)
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 

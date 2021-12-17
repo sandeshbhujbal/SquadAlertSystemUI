@@ -3,21 +3,34 @@
 // import authHelper from '@utils/auth-helper'
 
 import BaseIcon from '@/components/base-icon/BaseIcon.vue'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
-    name: 'the-header',
+	name: 'the-header',
 
-    components: {
-        BaseIcon
-    },
+	data () {
+		return {
+		}
+	},
 
-    computed: {
-        // ...mapGetters('authentication', ['currentUser'])
-    },
+	components: {
+		BaseIcon
+	},
 
-    methods: {
-        handleLogout () {
-            // authHelper.goToLogout()
-        }
-    }
+	computed: {
+        ...mapState('utils', ['currentUser']),
+	},
+
+	created () {
+	},
+
+	methods: {
+        ...mapMutations('utils', ['CURRENT_USER_DATA']),
+		handleLogout () {
+            this.$router.push({
+                name: 'HomePage',
+            })
+            this.CURRENT_USER_DATA('')
+		}
+	}
 }
