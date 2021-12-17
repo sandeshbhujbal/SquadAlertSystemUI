@@ -1,0 +1,27 @@
+@import "@/assets/scss/reset.scss";
+@import "@/assets/scss/utility/colors.scss";
+@import "@/assets/scss/utility/fonts.scss";
+@import "@/assets/scss/utility/text.scss";
+@import "@/assets/scss/layout/flex.scss";
+@import "@/assets/scss/layout/card.scss";
+@import "@/assets/scss/layout/page.scss";
+@import "@/assets/scss/layout/tab.scss";
+@import "@/assets/scss/layout/table.scss";
+@import "@/assets/scss/layout/component.scss";
+
+@font-face {
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+    src: url("https://fonts.googleapis.com/css?family=Source+Sans+Pro"); // TODO: store locally instead of calling url
+    // TODO: restrict font-variant/weight/style to reduce size => confirm with UX
+}
+
+html {
+    font-size: 10px; // i.e. 1rem = 10px
+}
+
+body {
+    background-color: $color-background-lightgrey;
+    color: $color-font-darkgrey;
+    font-size: 1.4rem;
+    line-height: 1.29;
+}

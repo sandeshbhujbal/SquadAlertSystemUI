@@ -1,0 +1,55 @@
+<!-- 
+  jangan diedit, codenya sensitif
+  kalau pengen belajar css/svg animasi yuk bareng caksony@gmail.com aja
+  makasih Ocan buat desainnya, cakep bener
+-->
+<svg xmlns='http://www.w3.org/2000/svg' width='160' height='200' >
+  <linearGradient id='gradasi' x1='0%' y1='100%'>
+    <stop offset='0%'   stop-color='#0095da' />
+    <stop offset='100%' stop-color='#82cbed' />
+  </linearGradient>
+  <g class='mantul'>
+    <svg width='100' height='100' x='25' y='25'>
+      <rect class='kubus' x='25' y='25' rx='15' width='50' height='50' fill='white' stroke='url(#gradasi)' stroke-width='10' />
+    </svg>
+  </g>
+  <g class='jalanan'>
+    <svg y='107' width='990'>
+      <rect width='110' height='3' fill='#0095da' />
+      <rect width='110' height='3' fill='#f1f1f1' x='110' />
+      <rect width='110' height='3' fill='#ed1c24' x='220' />
+      <rect width='110' height='3' fill='#f1f1f1' x='330' />
+      <rect width='110' height='3' fill='#00b25a' x='440' />
+      <rect width='110' height='3' fill='#f1f1f1' x='550' />
+      <rect width='110' height='3' fill='#f7931e' x='660' />
+      <rect width='110' height='3' fill='#f1f1f1' x='770' />
+      <rect width='110' height='3' fill='#0095da' x='880' />
+    </svg>
+  </g>
+  <style>
+    .mantul {animation: mantul 1.14s cubic-bezier(1, 1, 1, .8) infinite;}
+    @keyframes mantul {
+      0%   { transform: translateY(-2px ) }
+      5%   { transform: translateY(-5px ) }
+      10%  { transform: translateY(-10px) }
+      20%  { transform: translateY(-15px) }
+      50%  { transform: translateY(-15px) }
+      70%  { transform: translateY(-12px) }
+      93%  { transform: translateY(-5px ) }
+      100% { transform: translateY( 0px ) }
+    }
+
+    .kubus {
+      transform-origin: 50% 50%;
+      animation: putar 5s linear infinite;
+    }
+    @keyframes putar {
+      100% {transform: rotate(360deg);}
+    }
+
+    .jalanan {animation: jalanan 3.4s linear infinite;}
+    @keyframes jalanan {
+      100% {transform: translateX(-880px);}
+    }
+  </style>
+</svg>

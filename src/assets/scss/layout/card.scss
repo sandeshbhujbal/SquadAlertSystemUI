@@ -1,0 +1,18 @@
+$base-step-footer-height: 80px;
+
+.card {
+    width: 100%;
+    padding: $spacing-m;
+
+    /**
+     * add step class for step based screens like create/update
+     */
+    &.step {
+        padding: $spacing-xl;
+        margin-bottom: $base-step-footer-height + $spacing-xl;
+
+        .component {
+            padding: 0;
+        }
+    }
+}

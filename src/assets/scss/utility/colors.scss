@@ -1,0 +1,47 @@
+// FONT
+.font-grey {
+    color: $color-font-grey;
+}
+
+.font-lightgrey {
+    color: $color-font-lightgrey;
+}
+
+.font-darkgrey {
+    color: $color-font-darkgrey;
+}
+
+.font-blue,
+.font-info {
+    color: $color-font-blue;
+}
+
+.font-success {
+    color: $color-font-success;
+}
+
+.font-error,
+.font-danger {
+    color: $color-font-error;
+}
+
+// ICON
+.icon-info {
+    fill: $color-icon-info;
+}
+
+.icon-success {
+    fill: $color-icon-success;
+}
+
+.icon-warning {
+    fill: $color-icon-warning;
+}
+
+.icon-danger {
+    fill: $color-icon-danger;
+}
+
+.icon-disabled {
+    fill: $color-icon-disabled;
+}

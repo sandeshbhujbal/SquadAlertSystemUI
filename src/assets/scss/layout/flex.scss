@@ -1,0 +1,75 @@
+.ai-center {
+    align-items: center;
+}
+
+.js-center { // TODO: change to jc-center later
+    justify-content: center;
+}
+
+.js-space-between { // TODO: change to jc-space-between later
+    justify-content: space-between;
+}
+
+.jc-flex-end {
+    justify-content: flex-end;
+}
+
+// align horizontal and vertical center
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+
+    .col1 {
+        flex: 1 0 0;
+    }
+
+    .col2 {
+        flex: 2 0 0;
+    }
+
+    .col3 {
+        flex: 3 0 0;
+    }
+
+    .col4 {
+        flex: 4 0 0;
+    }
+
+    .col5 {
+        flex: 5 0 0;
+    }
+
+    .col6 {
+        flex: 6 0 0;
+    }
+
+    .col7 {
+        flex: 7 0 0;
+    }
+
+    .col8 {
+        flex: 8 0 0;
+    }
+
+    .col9 {
+        flex: 9 0 0;
+    }
+
+    .col10 {
+        flex: 10 0 0;
+    }
+
+    .col11 {
+        flex: 11 0 0;
+    }
+
+    .col12 {
+        flex: 12 0 0;
+    }
+}

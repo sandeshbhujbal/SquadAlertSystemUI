@@ -1,0 +1,18 @@
+/**
+    Add this class to all pages
+ */
+.page {
+	> .header {
+		display: flex;
+		align-items: center;
+		padding: $spacing-xl;
+		min-height: 80px;
+
+		.header__title {
+			font-size: $font-page-header;
+			font-weight: $font-bold;
+			color: $color-font-darkgrey;
+			line-height: 1.17;
+		}
+	}
+}

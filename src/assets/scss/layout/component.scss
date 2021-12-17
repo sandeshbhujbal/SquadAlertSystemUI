@@ -1,0 +1,29 @@
+$spacing-component-margin-bottom: 26px;
+
+/**
+ * Add this class to all child components
+ * !!! Not to be applied to reusable components
+ */
+.component {
+    padding: 0 $spacing-xl $spacing-xl;
+
+    .header {
+        display: flex;
+        align-items: center;
+        margin-bottom: $spacing-component-margin-bottom;
+
+        &__title {
+            font-size: $font-component-header;
+            font-weight: $font-bold;
+            color: $color-font-darkgrey;
+            line-height: 1.22;
+        }
+
+    }
+
+    .advance-filter-panel {
+        margin: auto (-$spacing-m) $spacing-s;
+        padding: $spacing-m;
+        background-color: $color-background-advance-filter-panel;
+    }
+}

@@ -1,0 +1,33 @@
+### SYSTEM ###
+.DS_Store
+
+## APPLICATION ##
+node_modules/
+/dist/
+/target/
+/forecasted_quantity.xlsx
+/undefined_undefined.xlsx
+dummy_dummy.xlsx
+Transfer Request_dummy.xlsx
+
+## LOGGING  ##
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+## UNIT TESTING ##
+/test/unit/coverage/
+/test/e2e/reports/
+selenium-debug.log
+selenium-server.log
+jmeter.log
+
+### EDITOR ###
+.idea
+.vscode
+.settings
+.project
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

@@ -1,0 +1,76 @@
+/*
+ ############# COLORS #############
+ */
+$color-font-grey: rgba(0, 0, 0, 0.6);
+$color-font-darkgrey: rgba(0, 0, 0, 0.87);
+$color-font-lightgrey: rgba(0, 0, 0, 0.38);
+$color-font-blue: #0095DA;
+$color-font-success: #577C27;
+$color-font-error: #F04242;
+$color-font-warning: #F7931E;
+
+$color-background-lightgrey: #f4f7fc;
+$color-background-purple: #03256c;
+$color-background-lightpurple: #6477ce;
+
+$color-background-advance-filter-panel: #F9F9F9;
+
+$color-icon-info: #0095DA;
+$color-icon-success: #9fce62;
+$color-icon-warning: #F7931E;
+$color-icon-danger: #F04242;
+$color-icon-disabled: #9E9E9E;
+
+$color-border-grey: #e0e0e0;
+
+/*
+ ############# SPACES #############
+ */
+$spacing-xxs: 4px;
+$spacing-xs: 8px;
+$spacing-s: 12px;
+$spacing-m: 16px;
+$spacing-l: 20px;
+$spacing-xl: 24px;
+$spacing-xxl: 28px;
+$spacing-xxl-2: 32px;
+
+// MENU
+$spacing-menu-width: 220px;
+$spacing-menu-width-collapsed: 66px;
+
+// HEADER
+$spacing-header-height: 56px;
+
+// BASE STEP FOOTER
+$spacing-step-footer-height: 80px;
+
+/*
+ ############# FONTS #############
+ */
+$font-small: 1.2rem;
+$font-medium: 1.4rem;
+$font-large: 2rem;
+
+$font-page-header: 2.4rem;
+$font-component-header: 1.8rem;
+
+/*
+ ############# Z-INDEX #############
+ */
+$z-index-base-autocomplete-list: 1000;
+$z-index-base-ticker: 10;
+$z-index-filter-date-range-date-ticker: 100;
+$z-index-loader: 10000;
+$z-index-loader-mask: 9999;
+$z-index-menu-floating-submenu: 999;
+$z-index-menu-toggle-btn: 10;
+$z-index-base-step-footer: 2;
+
+/*
+ ############# BORDER #############
+ */
+$border-grey: 1px solid $color-border-grey;
+
+// OTHERS
+$font-bold: 600;

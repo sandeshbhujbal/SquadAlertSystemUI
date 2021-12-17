@@ -1,0 +1,12 @@
+.custom-tab {
+    .custom-tab__item {
+        padding-bottom: 0;
+
+        &-body {
+            border: $border-grey;
+            padding: $spacing-xl;
+            border-radius: 8px;
+            height: 100%;
+        }
+    }
+}
