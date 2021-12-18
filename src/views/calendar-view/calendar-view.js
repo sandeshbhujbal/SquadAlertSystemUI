@@ -3,64 +3,51 @@ import BaseIcon from '@/components/base-icon/BaseIcon.vue'
 import ModalComponent from '@/components/modal-component/ModalComponent.vue'
 import { mapActions, mapGetters } from 'vuex'
 
+const ADD_CALENDAR_INPUTS = {
+	date: '',
+	endDateTime: {
+		value: '',
+		text: '',
+        sendingValue: ''
+	},
+	picNames: [],
+	squadId: '',
+	startDateTime: {
+		value: '',
+		text: '',
+        sendingValue: ''
+	}
+}
+
 export default {
 	data () {
 		return {
-			showDatePicker: !1,
 			visibleModal: !1,
 			value: {
 				value: '',
 				text: ''
 			},
-			events: [
+			userObjectList: [
 				{
-					start: '2021-12-16 10:30',
-					end: '2021-12-17 11:30',
-					// You can also define event dates with Javascript Date objects:
-					// start: new Date(2018, 11 - 1, 16, 10, 30),
-					// end: new Date(2018, 11 - 1, 16, 11, 30),
-					title: 'Doctor appointment',
-					content: '<i class="v-icon material-icons">local_hospital</i>',
-					class: 'health'
+					userName: 'Aman Dhaka',
+					userId: '1'
 				},
 				{
-					start: '2021-12-16 10:30',
-					end: '2021-12-16 11:30',
-					// You can also define event dates with Javascript Date objects:
-					// start: new Date(2018, 11 - 1, 16, 10, 30),
-					// end: new Date(2018, 11 - 1, 16, 11, 30),
-					title: 'GYM',
-					content: '<i class="v-icon material-icons">local_hospital</i>',
-					class: 'sport'
+					userName: 'Sandesh Bhujbal',
+					userId: '2'
 				}
 			],
+			calendarValues: [],
 			openModal: false,
 			width: '20%',
 			property: '',
 			sort: !1,
+			startDateRanged: !1,
+            endDateRanged: !1,
+			showStartDatePicker: !1,
+            showEndDatePicker: !1,
 			titles: ['Title', 'Title', 'Action'],
-			contents: [
-				{
-					title1: 'Content',
-					title2: 'Display text inside the label in case not provided via default slot',
-					action: 'link'
-				},
-				{
-					title1: 'Content',
-					title2: 'Display text inside the label in case not provided via default slot',
-					action: 'default btn'
-				},
-				{
-					title1: 'Content',
-					title2: 'placeholder',
-					action: 'default btn'
-				},
-				{
-					title1: 'Content',
-					title2: 'Display text inside the label in case not provided via default slot',
-					action: '<BliIconCheck />'
-				}
-			]
+			addCalendarInput: { ...ADD_CALENDAR_INPUTS }
 		}
 	},
 	created () {
@@ -68,26 +55,81 @@ export default {
 		this.fetchSquadCalendarData({ queryString, success: this.checkCallBack })
 	},
 	methods: {
-		...mapActions('calendarSettingsStore', ['fetchSquadCalendarData']),
+		...mapActions('calendarSettingsStore', ['fetchSquadCalendarData', 'addCalendarSchedule']),
+
+        refreshCalendar() {
+            this.addCalendarInput= { ...ADD_CALENDAR_INPUTS }
+            const queryString = `?squadId=03d7db99-dd18-4935-b220-a249bf5a49b8`
+		    this.fetchSquadCalendarData({ queryString, success: this.checkCallBack })
+        },
 
 		checkCallBack () {
-			debugger
 			console.log(this.getSquadCalendarData)
 			console.log('check')
+			for (const item of this.getSquadCalendarData) {
+				const obj = {
+					start: this.dateConversion(item.startDateTime),
+					end: this.dateConversion(item.endDateTime),
+					class: 'sport',
+					title: item.squadName,
+					content: item.picNames.toString()
+				}
+				this.calendarValues.push(obj)
+			}
+			console.log(this.calendarValues)
+		},
+		dateConversion (epcoDate) {
+			console.log(epcoDate)
+			var date = new Date(epcoDate)
+			var year = date.getFullYear()
+			var month = date.getMonth() + 1
+			var day = date.getDate()
+			var hours = date.getHours()
+			var minutes = date.getMinutes()
+			var seconds = date.getSeconds()
+			return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
 		},
 		handleCreateInboundOrder () {
 			this.visibleModal = !0
 		},
 		closeDatePicker () {
-			this.showDatePicker = !1
+			this.showStartDatePicker = !1
+		},
+        closeEndDatePicker () {
+			this.showEndDatePicker = !1
 		},
 		openDatePicker () {
-			this.showDatePicker = !0
+			this.showStartDatePicker = !0
+		},
+        openEndDatePicker () {
+			this.showEndDatePicker = !0
 		},
 		updateValue (e) {
-			var t = e.end ? ' - '.concat(e.end.toLocaleDateString('id-ID')) : ''
-			;(this.value.value = e.start.toLocaleDateString('id-ID') + t), (this.value.text = this.value.value), e.start && e.end && this.closeDatePicker()
-		}
+			// debugger
+			// console.log(e.start)
+			// console.log(e.start.toLocaleDateString('id-ID'))
+            this.addCalendarInput.startDateTime.sendingValue = e.start
+			this.startDateRanged || ((this.addCalendarInput.startDateTime.value = e.start.toLocaleDateString('id-ID')), (this.addCalendarInput.startDateTime.text = this.addCalendarInput.startDateTime.value), this.closeDatePicker())
+		},
+        updateEndValue (e) {
+			// debugger
+			// console.log(e.start)
+			// console.log(e.start.toLocaleDateString('id-ID'))
+            this.addCalendarInput.endDateTime.sendingValue = e.start
+			this.startDateRanged || ((this.addCalendarInput.endDateTime.value = e.start.toLocaleDateString('id-ID')), (this.addCalendarInput.endDateTime.text = this.addCalendarInput.endDateTime.value), this.closeDatePicker())
+		},
+        saveCalendarSchedule () {
+            debugger
+            const payload = {
+                date: new Date().toISOString(),
+                startDateTime: new Date(this.addCalendarInput.startDateTime.sendingValue).toISOString(),
+                endDateTime: new Date(this.addCalendarInput.endDateTime.sendingValue).toISOString(),
+                squadId: '03d7db99-dd18-4935-b220-a249bf5a49b8',
+                picNames: [this.addCalendarInput.picNames.value]
+            }
+            debugger
+            this.addCalendarSchedule({payload, success: this.refreshCalendar})
+        }
 	},
 	computed: {
 		...mapGetters('calendarSettingsStore', ['getSquadCalendarData'])

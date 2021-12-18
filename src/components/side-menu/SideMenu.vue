@@ -1,5 +1,6 @@
 <template>
     <div
+        v-if="currentUser"
         v-show="showMenu"
         class="the-menu"
         :class="{
@@ -162,7 +163,7 @@
             }
 
             &__app-name {
-                color: #fff;
+                color: #EEF5DB;
             }
         }
 
@@ -179,7 +180,7 @@
                 padding: 0 $spacing-s;
                 min-height: 42px;
                 margin: $spacing-xxs 0;
-                color: #fff;
+                color: #4F6367;
                 border-radius: 8px;
                 cursor: pointer;
                 transition: background-color 0.3s;
@@ -187,7 +188,7 @@
                 .router-link-active,
                 &.router-link-active,
                 &--hoverable:hover { // router-link-active class is provided by vue and attaches to respective element automatically
-                    background-color: #4F6367;
+                    background-color: #EEF5DB;
                 }
 
                 &__icon {

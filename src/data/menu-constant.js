@@ -11,12 +11,17 @@
 const MENUS = [ // TODO: get this data from API => TBD
     {
         label: 'Page',
-        routeName: 'PurchaseOrder',
+        routeName: 'PageView',
         icon: ''
     },
     {
-        label: 'Squads',
-        routeName: 'InboundOrder',
+        label: 'Squad Alert',
+        routeName: 'SquadAlert',
+        icon: ''
+    },
+    {
+        label: 'Squads Schedule',
+        routeName: 'CalendarView',
         icon: ''
     },
     // {
@@ -35,13 +40,8 @@ const MENUS = [ // TODO: get this data from API => TBD
     //     ]
     // },
     {
-        label: 'Alert',
-        routeName: 'FailureTransaction',
-        icon: ''
-    },
-    {
         label: 'My Schedule',
-        routeName: 'StockAdjustment',
+        routeName: 'MySchedule',
         icon: ''
     },
     // {

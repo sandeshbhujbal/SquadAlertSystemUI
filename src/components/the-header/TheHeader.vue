@@ -30,16 +30,17 @@
 
 <style lang="scss" scoped>
 	.app-name {
+        color: #EEF5DB;
 		margin-left: 40%;
 		font-weight: bold;
-		font-family: "Times New Roman", Times, serif;
+		font-family: Arial, Helvetica, sans-serif;
         font-size: 25px;
 	}
 	.the-header {
 		position: relative;
 		height: $spacing-header-height;
 		padding: $spacing-m $spacing-xl;
-		background-color: #fff;
+		background-color: #FE5F55;
 
 		.action {
 			position: absolute;

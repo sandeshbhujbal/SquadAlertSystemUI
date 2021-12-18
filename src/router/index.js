@@ -23,6 +23,16 @@ const router = new VueRouter({
 			path: '/calendar-view',
 			name: 'CalendarView',
 			component: loadComponent('calendar-view/CalendarView')
+		},
+		{
+			path: '/squad-alert',
+			name: 'SquadAlert',
+			component: loadComponent('calendar-view/CalendarView')
+		},
+		{
+			path: '/my-schedule',
+			name: 'MySchedule',
+			component: loadComponent('calendar-view/CalendarView')
 		}
 	]
 })

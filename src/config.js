@@ -25,6 +25,10 @@ export default {
 
 			//calendat api's
 			fetchSquadCalendarData: `${API_SPM}/calendar/listCalendar`,
+			addCalendarSchedule: `${API_SPM}/calendar/saveCalendar`,
+
+			//alert api's
+			fetchSquadAlertData: `${API_SPM}/alert/user-list`
 		}
 	}
 }

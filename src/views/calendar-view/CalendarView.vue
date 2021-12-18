@@ -15,8 +15,8 @@
             </BliButton>
         </div>
         <div class="page__body">
-            <div>
-                <calendar />
+            <div v-if="this.getSquadCalendarData">
+                <calendar :events="calendarValues" />
             </div>
         </div>
         <div>
@@ -31,37 +31,64 @@
                         <div class="your-modal-content">
                             <!-- <div>Content start</div> -->
                             <BliField class="input">
-                                <BliInput placeholder="Squad-Name" />
-                            </BliField>
-                            <BliField class="input">
-                                <BliInput placeholder="description" />
+                                <BliDropdown
+                                    class="dropdown"
+                                    v-model="addCalendarInput.picNames"
+                                    selection
+                                    autoclose
+                                    title="Dropdown title">
+                                    <label slot="label">Select User</label>
+                                    <BliList scrollable>
+                                        <BliListItem
+                                            v-for="item in userObjectList"
+                                            :key="item.id"
+                                            :value="item.userName">
+                                            {{item.userName}}
+                                        </BliListItem>
+                                    </BliList>
+                                </BliDropdown>
                             </BliField>
                             <BliField class="input">
                                 <BliDropdown
-                                    v-model="value"
+                                    v-model="addCalendarInput.startDateTime"
                                     @trigger="openDatePicker"
                                     selection
                                     right-icon>
-                                    <label slot="label">Select Date</label>
+                                    <label slot="label">Select Start Date</label>
                                     <BliIconCalendar slot="right-icon" />
                                 </BliDropdown>
                                 <BliDatepicker
-                                    :show-datepicker="showDatePicker"
+                                    :ranged="startDateRanged"
+                                    :show-datepicker="showStartDatePicker"
                                     :time-zone=0
                                     @selected="updateValue"
                                     @close="closeDatePicker"
                                     @maskClick="closeDatePicker" />
                             </BliField>
+                            <BliField class="input">
+                                <BliDropdown
+                                    v-model="addCalendarInput.endDateTime"
+                                    @trigger="openEndDatePicker"
+                                    selection
+                                    right-icon>
+                                    <label slot="label">Select End Date</label>
+                                    <BliIconCalendar slot="right-icon" />
+                                </BliDropdown>
+                                <BliDatepicker
+                                    :ranged="endDateRanged"
+                                    :show-datepicker="showEndDatePicker"
+                                    :time-zone=0
+                                    @selected="updateEndValue"
+                                    @close="closeEndDatePicker"
+                                    @maskClick="closeEndDatePicker" />
+                            </BliField>
                             <!-- <div>Content end</div> -->
                         </div>
                         <div class="your-modal-footer">
                             <BliButton
-                                color="info"
-                                @click="visibleModal = false">Primary action</BliButton>
-                            <BliButton
-                                color="info"
+                                color="danger"
                                 outline
-                                @click="visibleModal = false">Secondary action</BliButton>
+                                @click="saveCalendarSchedule">Add Schedule</BliButton>
                         </div>
                     </div>
                 </BliModalContainer>

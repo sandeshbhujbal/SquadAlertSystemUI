@@ -25,7 +25,7 @@ export default {
     },
 
     computed: {
-        ...mapState('utils', ['isSideMenuCollapsed']),
+        ...mapState('utils', ['currentUser']),
 
         showMenu () {
             return !this.$route.meta.hideMenu

@@ -17,10 +17,8 @@ export default {
 	actions: {
 		fetchSquadCalendarData ({ commit }, { queryString, success } = {}) {
 			// dispatch({ type: 'addLoader', root: true })
-            debugger
 			api.fetchSquadCalendarData(
 				result => {
-                    debugger
 					commit('SQUAD_CALENDAR_DATA', result.data)
 					if (success) {
 						success()
@@ -30,6 +28,19 @@ export default {
 				() => {},
 				queryString
 			)
-		}
+		},
+        addCalendarSchedule ({ commit }, { payload, success } = {}) {
+            api.addCalendarSchedule(
+                result => {
+                    commit('SQUAD_CALENDAR_DATA', result.data)
+					if (success) {
+						success()
+					}
+					// dispatch({ type: 'removeLoader', root: true })
+                },
+                () => {},
+				payload
+            )
+        }
 	}
 }

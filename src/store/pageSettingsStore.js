@@ -1,25 +1,24 @@
 import api from '@/api/pageApis'
 import {
-	SET_PRODUCT_CLASSIFIER_DATA,
+	SET_SQUAD_ALERT_DATA,
 } from '@/store/store-mutation-constants.js'
 
 export default {
+    namespaced: true,
 	state: {
-		productClassifierData: [],
+		setSquadAlertData: [],
 	},
 	getters: {
-		getProductClassifierData: state => state.productClassifierData,
+		getSquadAlertData: state => state.setSquadAlertData,
 	},
 	mutations: {
-		[SET_PRODUCT_CLASSIFIER_DATA]: (state, value) => (state.productClassifierData = value),
+		[SET_SQUAD_ALERT_DATA]: (state, value) => (state.setSquadAlertData = value),
 	},
 	actions: {
-		fetchProductClassifierData ({ commit, dispatch }, { success, filters = '', payload = {} } = {}) {
-			dispatch({ type: 'addLoader', root: true })
-			api.fetchProductClassifierData(
+		fetchSquadAlertData ({ commit }, { filters, success } = {}) {
+			api.fetchSquadAlertData(
 				result => {
-					commit('SET_PRODUCT_CLASSIFIER_DATA', result.data.data)
-					commit('SET_PRODUCT_CLASSIFIER_PAGINATION_DATA', result.data.paging)
+					commit('SET_SQUAD_ALERT_DATA', result.data)
 					if (success) {
 						success()
 					}
@@ -27,7 +26,6 @@ export default {
 				},
 				() => {},
 				filters,
-				payload
 			)
 		}
 	}

@@ -43,6 +43,7 @@
 
 			&__content {
 				overflow: auto;
+                background: #e9f5f5;
 			}
 		}
 	}
