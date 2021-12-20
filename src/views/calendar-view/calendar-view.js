@@ -1,27 +1,29 @@
 import Calendar from '@/components/schedule-calendar/calendar.vue'
 import BaseIcon from '@/components/base-icon/BaseIcon.vue'
 import ModalComponent from '@/components/modal-component/ModalComponent.vue'
-import { mapActions, mapGetters } from 'vuex'
+import { USER_DETAILS } from '@/data/user-details-constant.js'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 const ADD_CALENDAR_INPUTS = {
 	date: '',
 	endDateTime: {
 		value: '',
 		text: '',
-        sendingValue: ''
+		sendingValue: ''
 	},
 	picNames: [],
 	squadId: '',
 	startDateTime: {
 		value: '',
 		text: '',
-        sendingValue: ''
+		sendingValue: ''
 	}
 }
 
 export default {
 	data () {
 		return {
+			value6: [],
 			visibleModal: !1,
 			value: {
 				value: '',
@@ -37,35 +39,42 @@ export default {
 					userId: '2'
 				}
 			],
+			usersDetails: [...USER_DETAILS],
+			currentUserName: '',
 			calendarValues: [],
 			openModal: false,
 			width: '20%',
 			property: '',
 			sort: !1,
 			startDateRanged: !1,
-            endDateRanged: !1,
+			endDateRanged: !1,
 			showStartDatePicker: !1,
-            showEndDatePicker: !1,
+			showEndDatePicker: !1,
 			titles: ['Title', 'Title', 'Action'],
 			addCalendarInput: { ...ADD_CALENDAR_INPUTS }
 		}
 	},
 	created () {
-		const queryString = `?squadId=03d7db99-dd18-4935-b220-a249bf5a49b8`
-		this.fetchSquadCalendarData({ queryString, success: this.checkCallBack })
+		this.currentUserName = localStorage.getItem('currenUser')
+		this.CURRENT_USER_DATA(this.currentUserName)
+		this.fetchScheduleData()
 	},
 	methods: {
 		...mapActions('calendarSettingsStore', ['fetchSquadCalendarData', 'addCalendarSchedule']),
-
-        refreshCalendar() {
-            this.addCalendarInput= { ...ADD_CALENDAR_INPUTS }
-            const queryString = `?squadId=03d7db99-dd18-4935-b220-a249bf5a49b8`
-		    this.fetchSquadCalendarData({ queryString, success: this.checkCallBack })
-        },
+		...mapMutations('utils', ['CURRENT_USER_DATA']),
+		fetchScheduleData () {
+			const currentUserObject = this.usersDetails.find(item => item.name === this.currentUserName)
+			const queryString = `?squadId=${currentUserObject.squadId}`
+			this.fetchSquadCalendarData({ queryString, success: this.checkCallBack })
+		},
+		refreshCalendar () {
+			this.addCalendarInput = { ...ADD_CALENDAR_INPUTS }
+			const currentUserObject = this.usersDetails.find(item => item.name === this.currentUserName)
+			const queryString = `?squadId=${currentUserObject.squadId}`
+			this.fetchSquadCalendarData({ queryString, success: this.checkCallBack })
+		},
 
 		checkCallBack () {
-			console.log(this.getSquadCalendarData)
-			console.log('check')
 			for (const item of this.getSquadCalendarData) {
 				const obj = {
 					start: this.dateConversion(item.startDateTime),
@@ -76,10 +85,8 @@ export default {
 				}
 				this.calendarValues.push(obj)
 			}
-			console.log(this.calendarValues)
 		},
 		dateConversion (epcoDate) {
-			console.log(epcoDate)
 			var date = new Date(epcoDate)
 			var year = date.getFullYear()
 			var month = date.getMonth() + 1
@@ -95,41 +102,47 @@ export default {
 		closeDatePicker () {
 			this.showStartDatePicker = !1
 		},
-        closeEndDatePicker () {
+		closeEndDatePicker () {
 			this.showEndDatePicker = !1
 		},
 		openDatePicker () {
 			this.showStartDatePicker = !0
 		},
-        openEndDatePicker () {
+		openEndDatePicker () {
 			this.showEndDatePicker = !0
 		},
 		updateValue (e) {
-			// debugger
-			// console.log(e.start)
-			// console.log(e.start.toLocaleDateString('id-ID'))
-            this.addCalendarInput.startDateTime.sendingValue = e.start
-			this.startDateRanged || ((this.addCalendarInput.startDateTime.value = e.start.toLocaleDateString('id-ID')), (this.addCalendarInput.startDateTime.text = this.addCalendarInput.startDateTime.value), this.closeDatePicker())
+			this.addCalendarInput.startDateTime.sendingValue = e.start
+			this.startDateRanged ||
+				((this.addCalendarInput.startDateTime.value = e.start.toLocaleDateString('id-ID')),
+				(this.addCalendarInput.startDateTime.text = this.addCalendarInput.startDateTime.value),
+				this.closeDatePicker())
 		},
-        updateEndValue (e) {
-			// debugger
-			// console.log(e.start)
-			// console.log(e.start.toLocaleDateString('id-ID'))
-            this.addCalendarInput.endDateTime.sendingValue = e.start
-			this.startDateRanged || ((this.addCalendarInput.endDateTime.value = e.start.toLocaleDateString('id-ID')), (this.addCalendarInput.endDateTime.text = this.addCalendarInput.endDateTime.value), this.closeDatePicker())
+		updateEndValue (e) {
+			this.addCalendarInput.endDateTime.sendingValue = e.start
+			this.startDateRanged ||
+				((this.addCalendarInput.endDateTime.value = e.start.toLocaleDateString('id-ID')),
+				(this.addCalendarInput.endDateTime.text = this.addCalendarInput.endDateTime.value),
+				this.closeDatePicker())
 		},
-        saveCalendarSchedule () {
-            debugger
-            const payload = {
-                date: new Date().toISOString(),
-                startDateTime: new Date(this.addCalendarInput.startDateTime.sendingValue).toISOString(),
-                endDateTime: new Date(this.addCalendarInput.endDateTime.sendingValue).toISOString(),
-                squadId: '03d7db99-dd18-4935-b220-a249bf5a49b8',
-                picNames: [this.addCalendarInput.picNames.value]
-            }
-            debugger
-            this.addCalendarSchedule({payload, success: this.refreshCalendar})
-        }
+		saveCalendarSchedule () {
+			const payload = {
+				date: new Date().toISOString(),
+				startDateTime: new Date(this.addCalendarInput.startDateTime.sendingValue).toISOString(),
+				endDateTime: new Date(this.addCalendarInput.endDateTime.sendingValue).toISOString(),
+				squadId: '03d7db99-dd18-4935-b220-a249bf5a49b8',
+				picNames: [this.addCalendarInput.picNames.value]
+			}
+			this.addCalendarSchedule({ payload, success: this.actionPerformedForAlert })
+		},
+		actionPerformedForAlert () {
+			this.refreshCalendar()
+			this.$toast.open({
+				duration: 5e3,
+				message: 'Schedule Saved',
+				type: 'success'
+			})
+		}
 	},
 	computed: {
 		...mapGetters('calendarSettingsStore', ['getSquadCalendarData'])

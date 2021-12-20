@@ -29,7 +29,6 @@
                     <div class="put-your-modal-style-here">
                         <h4>Add Schedule</h4>
                         <div class="your-modal-content">
-                            <!-- <div>Content start</div> -->
                             <BliField class="input">
                                 <BliDropdown
                                     class="dropdown"
@@ -82,13 +81,12 @@
                                     @close="closeEndDatePicker"
                                     @maskClick="closeEndDatePicker" />
                             </BliField>
-                            <!-- <div>Content end</div> -->
                         </div>
                         <div class="your-modal-footer">
                             <BliButton
                                 color="danger"
                                 outline
-                                @click="saveCalendarSchedule">Add Schedule</BliButton>
+                                @click="() => {saveCalendarSchedule()}">Add Schedule</BliButton>
                         </div>
                     </div>
                 </BliModalContainer>

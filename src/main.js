@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import 'element-ui/lib/theme-chalk/index.css';
 import '@blibli/blue-internal/dist/blue-internal.min.css'
 import Blue from '@blibli/blue-internal/dist/blue-internal.min'
 import ElementUI from 'element-ui'

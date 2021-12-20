@@ -6,7 +6,7 @@
             <div class="input">
                 <BliField>
                     <BliInput v-model="pageInputs.pagingEmailAddress" />
-                    <span slot="field-unit">@gdn-commerce.com</span>
+                    <span slot="field-unit">@gmail.com</span>
                 </BliField>
             </div>
             <div
@@ -15,7 +15,7 @@
                 <BliDropdown
                     v-model="pageInputs.severity"
                     selection>
-                    <label slot="label">This is label</label>
+                    <label slot="label">Severity</label>
                     <BliList scrollable>
                         <BliListItem
                             v-for="item in items"
@@ -30,14 +30,14 @@
                 v-if="pageInputs.pagingEmailAddress.length > 7"
                 class="input">
                 <BliField>
-                    <BliTextarea v-model="pageInputs.summary" />
+                    <BliTextarea placeholder="Summary" v-model="pageInputs.summary" />
                 </BliField>
             </div>
             <div
                 v-if="pageInputs.pagingEmailAddress.length > 7"
                 class="input">
                 <BliField>
-                    <BliTextarea v-model="pageInputs.summary" />
+                    <BliTextarea placeholder="Details" v-model="pageInputs.details" />
                 </BliField>
             </div>
             <BliButton
@@ -45,7 +45,7 @@
                 has-left-icon
                 color="danger"
                 size="large"
-                @click="handleCreateInboundOrder">
+                @click="handelCreatePage">
                 <base-icon
                     class="action__create-inbound-order-icon"
                     fill="#fff"
@@ -63,25 +63,21 @@
                 type="primary"
                 :titles="titles"
                 :items="contents">
-                <!-- <BliButton
-                    slot="button-0"
-                    color="info"
-                    size="small"> default
-                </BliButton> -->
                 <template
                     v-for="(item, index) in contents">
                     <BliButton
                         v-if="item.status === 'OPEN'"
                         :key="item.index"
                         :slot="`button-${index}`"
-                        color="info"
-                        size="small"> Acknowledge
+                        color="danger"
+                        size="small"
+                        @click="acknowLedgeAlertAction(index)"> Acknowledge
                     </BliButton>
                     <BliButton
                         v-else
                         :key="item.index"
                         :slot="`button-${index}`"
-                        color="info"
+                        color="danger"
                         size="small"
                         disabled> Acknowledge
                     </BliButton>

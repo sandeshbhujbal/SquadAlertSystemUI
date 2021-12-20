@@ -7,7 +7,6 @@ export default {
     },
 
     addCalendarSchedule: (callback, fail, payload) => { 
-        debugger
         apiCall.makePostRequest(`${config.api.athens.addCalendarSchedule}`, callback, fail, payload)
     }
 }

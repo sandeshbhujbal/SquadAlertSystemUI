@@ -3,6 +3,8 @@
 // import authHelper from '@utils/auth-helper'
 
 import BaseIcon from '@/components/base-icon/BaseIcon.vue'
+import Notification from '@/components/notification-badge/NotificationBadge.vue'
+
 import { mapState, mapMutations } from 'vuex'
 
 export default {
@@ -14,7 +16,8 @@ export default {
 	},
 
 	components: {
-		BaseIcon
+		BaseIcon,
+        Notification
 	},
 
 	computed: {
@@ -31,6 +34,9 @@ export default {
                 name: 'HomePage',
             })
             this.CURRENT_USER_DATA('')
+		},
+		routeToNotificationListing () {
+			debugger
 		}
 	}
 }

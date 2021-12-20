@@ -11,24 +11,18 @@ export default {
 			// System Configuration API's
 			getSystemConfig: `${API_SPM}/systemParameter`,
 
-			// Common API's
-			getAllCategories: `${API_SPM}/category`,
-			getChildCategory: `${API_SPM}/category`,
-			getBrands: `${API_SPM}/brand`,
-			getWarehouses: `${API_SPM}/warehouse`,
-			getVendors: `${API_SPM}/vendor`,
-			getStockLabel: `${API_SPM}/getStockLabels`,
-			getStockStatus: `${API_SPM}/getStockStatus`,
-			getMerchants: `${API_SPM}/merchant`,
-			getDepartments: `${API_SPM}/department`,
-			getAreaList: `${API_SPM}/area`,
-
 			//calendat api's
 			fetchSquadCalendarData: `${API_SPM}/calendar/listCalendar`,
 			addCalendarSchedule: `${API_SPM}/calendar/saveCalendar`,
 
 			//alert api's
-			fetchSquadAlertData: `${API_SPM}/alert/user-list`
+			fetchUserAlertData: `${API_SPM}/alert/user-list`,
+			fetchSquadAlertData: `${API_SPM}/alert/list`,
+			acknowledgeAlert: `${API_SPM}/alert/acknowledge`,
+			pagginSquads: `${API_SPM}/page`,
+
+			//notification api's
+			fetchNotification: `${API_SPM}/notification/fetch`
 		}
 	}
 }

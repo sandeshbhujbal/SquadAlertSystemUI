@@ -27,12 +27,17 @@ const router = new VueRouter({
 		{
 			path: '/squad-alert',
 			name: 'SquadAlert',
-			component: loadComponent('calendar-view/CalendarView')
+			component: loadComponent('squad-alert-view/SquadAlertView')
 		},
 		{
 			path: '/my-schedule',
 			name: 'MySchedule',
 			component: loadComponent('calendar-view/CalendarView')
+		},
+		{
+			path: '/my-notification',
+			name: 'MyNotification',
+			component: loadComponent('notification-view/NotificationView')
 		}
 	]
 })
