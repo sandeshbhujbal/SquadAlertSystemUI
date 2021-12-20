@@ -20,16 +20,25 @@ export default {
 				value: '',
 				text: ''
 			},
-			userObjectList: [
-				{
-					userName: 'Aman Dhaka',
-					userId: '1'
-				},
-				{
-					userName: 'Sandesh Bhujbal',
-					userId: '2'
-				}
-			],
+			userObjectList: [{
+                userName: 'Aman Dhaka',
+                userId: '1'
+            },{
+                userName: 'Sandesh Bhujbal',
+                userId: '2'
+            },{
+                userName: 'Shubham Kumar',
+                userId: '3'
+            }, {
+                userName: 'Milan Rathod',
+                userId: '4'
+            },{
+                userName: 'Sujoy Dey',
+                userId: '5'
+            },{
+                userName: 'Vijay Surya Singh',
+                userId: '6'
+            }],
 			usersDetails: [...USER_DETAILS],
 			currentUserName: '',
 			currentSquadName: '',
@@ -130,7 +139,6 @@ export default {
 				squadId: this.currentSquadId,
 				picNames: this.addCalendarInput.picNames
 			}
-			debugger
 			this.addCalendarSchedule({ payload, success: this.actionPerformedForAlert })
 		},
 		actionPerformedForAlert () {

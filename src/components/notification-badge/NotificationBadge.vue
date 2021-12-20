@@ -4,7 +4,7 @@
             slot="left-icon"
             icon-name="Notification" 
             :color="'#EEF5DB'"/>
-        <span class="badge">10</span>
+        <span class="badge">{{ getNotificationForCount.length }}</span>
     </span>
 </template>
 

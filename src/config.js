@@ -23,6 +23,7 @@ export default {
 
 			//notification api's
 			fetchNotification: `${API_SPM}/notification/fetch`,
+			fetchNotificationForCount: `${API_SPM}/notification/fetch`,
 			acknowledgeNotification: `${API_SPM}/notification/acknowledge`
 		}
 	}

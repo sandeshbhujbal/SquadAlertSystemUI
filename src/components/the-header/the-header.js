@@ -34,6 +34,7 @@ export default {
                 name: 'HomePage',
             })
             this.CURRENT_USER_DATA('')
+			localStorage.removeItem(key);
 		},
 		routeToNotificationListing () {
 			debugger

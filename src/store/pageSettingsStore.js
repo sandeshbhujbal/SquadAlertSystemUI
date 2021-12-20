@@ -1,22 +1,25 @@
 import api from '@/api/pageApis'
-import { SET_USER_ALERT_DATA, SET_SQUAD_ALERT_DATA, SET_NOTIFICATION_DATA } from '@/store/store-mutation-constants.js'
+import { SET_USER_ALERT_DATA, SET_SQUAD_ALERT_DATA, SET_NOTIFICATION_DATA, SET_NOTIFICATION_DATA_FOR_COUNT } from '@/store/store-mutation-constants.js'
 
 export default {
 	namespaced: true,
 	state: {
 		setUserAlertData: [],
 		setSquadAlertData: [],
-		setNotificationData: []
+		setNotificationData: [],
+        setNotificationForCount: [],
 	},
 	getters: {
 		getUserAlertData: state => state.setUserAlertData,
 		getSquadAlertData: state => state.setSquadAlertData,
-		getNotificationData: state => state.setNotificationData
+		getNotificationData: state => state.setNotificationData,
+        getNotificationForCount: state => state.setNotificationForCount
 	},
 	mutations: {
 		[SET_USER_ALERT_DATA]: (state, value) => (state.setUserAlertData = value),
 		[SET_SQUAD_ALERT_DATA]: (state, value) => (state.setSquadAlertData = value),
-		[SET_NOTIFICATION_DATA]: (state, value) => (state.setNotificationData = value)
+		[SET_NOTIFICATION_DATA]: (state, value) => (state.setNotificationData = value),
+        [SET_NOTIFICATION_DATA_FOR_COUNT]: (state, value) => (state.setNotificationForCount = value),
 	},
 	actions: {
 		fetchUserAlertData ({ commit }, { filters, success } = {}) {
@@ -70,6 +73,18 @@ export default {
 			api.fetchNotification(
 				result => {
 					commit('SET_NOTIFICATION_DATA', result.data)
+					if (success) {
+						success()
+					}
+				},
+				() => {},
+				filters
+			)
+		},
+        fetchNotificationForCount ({ commit }, { filters, success } = {}) {
+			api.fetchNotificationForCount(
+				result => {
+					commit('SET_NOTIFICATION_DATA_FOR_COUNT', result.data)
 					if (success) {
 						success()
 					}

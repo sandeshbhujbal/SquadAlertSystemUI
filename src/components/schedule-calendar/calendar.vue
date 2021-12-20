@@ -1,7 +1,7 @@
 <template>
     <div class="calendar">
         <vue-cal
-            selected-date="2021-12-16"
+            :selected-date="currentDate"
             :time-from="0 * 60"
             :time-to="23 * 60"
             :disable-views="['years', 'year', 'month']"

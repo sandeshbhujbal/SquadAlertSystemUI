@@ -4,7 +4,10 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 const PAGE_INPUTS = {
 	pagingEmailAddress: '',
-	severity: 'High',
+	severity: {
+		text: 'High',
+		value: 'High'
+	},
 	summary: '',
 	details: ''
 }

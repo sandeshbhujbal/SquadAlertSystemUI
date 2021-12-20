@@ -12,8 +12,8 @@
                 type="border-card"
                 v-model="activeTabName">
                 <el-tab-pane 
-                    name="Opened Alerts"
-                    label="Opened Alerts">
+                    name="Open Alerts"
+                    label="Open Alerts">
                     <BliTable
                     sort="false"
                     class="inbound-order-list__table custom-table"
@@ -41,8 +41,8 @@
                 </BliTable>
                 </el-tab-pane>
                 <el-tab-pane 
-                    name="Acknowledge Alerts"
-                    label="Acknowledge Alerts">
+                    name="Acknowledged Alerts"
+                    label="Acknowledged Alerts">
                     <BliTable
                     sort="false"
                     class="inbound-order-list__table custom-table"

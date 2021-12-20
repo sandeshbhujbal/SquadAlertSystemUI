@@ -5,7 +5,7 @@ import {
 
 import { MENUS } from '@/data/menu-constant.js'
 
-import logo from '@/assets/icons/oms-logo.svg'
+import logo from '@/assets/icons/oms-logo.png'
 
 import BaseIcon from '@/components/base-icon/BaseIcon.vue'
 import Notification from '@/components/notification-badge/NotificationBadge.vue'

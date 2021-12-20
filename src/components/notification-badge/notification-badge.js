@@ -1,7 +1,7 @@
 import BaseIcon from '@/components/base-icon/BaseIcon.vue'
 import Notification from '@/components/notification-badge/NotificationBadge.vue'
 
-import { mapState, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
 	name: 'the-header',
@@ -16,7 +16,7 @@ export default {
 	},
 
 	computed: {
-		...mapState('utils', ['currentUser'])
+		...mapGetters('pageSettingsStore', ['getNotificationForCount'])
 	},
 
 	created () {},

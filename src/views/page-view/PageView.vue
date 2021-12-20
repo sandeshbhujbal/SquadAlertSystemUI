@@ -30,14 +30,18 @@
                 v-if="pageInputs.pagingEmailAddress.length > 7"
                 class="input">
                 <BliField>
-                    <BliTextarea placeholder="Summary" v-model="pageInputs.summary" />
+                    <BliTextarea
+                        placeholder="Summary"
+                        v-model="pageInputs.summary" />
                 </BliField>
             </div>
             <div
                 v-if="pageInputs.pagingEmailAddress.length > 7"
                 class="input">
                 <BliField>
-                    <BliTextarea placeholder="Details" v-model="pageInputs.details" />
+                    <BliTextarea
+                        placeholder="Details"
+                        v-model="pageInputs.details" />
                 </BliField>
             </div>
             <BliButton
@@ -53,37 +57,38 @@
                 Page
             </BliButton>
         </BliCard>
-        <BliCard
-            rounded
-            class="table">
-            <h6>My Alerts</h6>
-            <BliTable
-                sort="false"
-                class="inbound-order-list__table custom-table"
-                type="primary"
-                :titles="titles"
-                :items="contents">
-                <template
-                    v-for="(item, index) in contents">
-                    <BliButton
-                        v-if="item.status === 'OPEN'"
-                        :key="item.index"
-                        :slot="`button-${index}`"
-                        color="danger"
-                        size="small"
-                        @click="acknowLedgeAlertAction(index)"> Acknowledge
-                    </BliButton>
-                    <BliButton
-                        v-else
-                        :key="item.index"
-                        :slot="`button-${index}`"
-                        color="danger"
-                        size="small"
-                        disabled> Acknowledge
-                    </BliButton>
-                </template>
-            </BliTable>
-        </BliCard>
+        <div class="test">
+            <BliCard
+                rounded
+                class="table">
+                <h6>My Alerts</h6>
+                <BliTable
+                    sort="false"
+                    class="inbound-order-list__table custom-table"
+                    type="primary"
+                    :titles="titles"
+                    :items="contents">
+                    <template v-for="(item, index) in contents">
+                        <BliButton
+                            v-if="item.status === 'OPEN'"
+                            :key="item.index"
+                            :slot="`button-${index}`"
+                            color="danger"
+                            size="small"
+                            @click="acknowLedgeAlertAction(index)"> Acknowledge
+                        </BliButton>
+                        <BliButton
+                            v-else
+                            :key="item.index"
+                            :slot="`button-${index}`"
+                            color="danger"
+                            size="small"
+                            disabled> Acknowledge
+                        </BliButton>
+                    </template>
+                </BliTable>
+            </BliCard>
+        </div>
     </div>
 </template>
 
@@ -104,8 +109,10 @@
     margin-left: 50%;
 }
 
-.table {
+.test {
     margin-top: 60px;
+    height: 300px;
+    overflow: scroll;
 }
 
 .page {
