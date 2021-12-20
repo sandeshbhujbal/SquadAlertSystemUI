@@ -7,7 +7,8 @@ export default {
 	name: 'oms-app',
 	data: function (){
 		return {
-			currentUserName: ''
+			currentUserName: '',
+            polling: null
 		}
 	},
 	components: {
@@ -20,15 +21,18 @@ export default {
 		...mapGetters('pageSettingsStore', ['getNotificationForCount'])
 	},
 	created () {
+        this.pollNotificationRegularly()
 	},
 	methods: {
 		...mapActions('pageSettingsStore', ['fetchNotificationForCount']),
 		...mapMutations('utils', ['CURRENT_USER_DATA']),
-		pollNotificationRegularly () {
+        pollNotificationRegularly () {
 			const filters = `?medium=EMAIL&user=${localStorage.getItem('currenUser')}`
-			setInterval(() => {
+			this.polling = setInterval(() => {
 				this.fetchNotificationForCount({ filters, success: this.handleCreateInboundOrder })
-			}, 9000)
+			}, 5000)
+            // this.SET_INTERVAL_COUNTER(this.polling)
+            localStorage.setItem('pollCounter', this.polling)
 		}
 	}
 }

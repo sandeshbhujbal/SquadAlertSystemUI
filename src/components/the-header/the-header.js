@@ -34,7 +34,8 @@ export default {
                 name: 'HomePage',
             })
             this.CURRENT_USER_DATA('')
-			localStorage.removeItem(key);
+			clearInterval(localStorage.getItem('pollCounter'))
+			localStorage.removeItem('pollCounter');
 		},
 		routeToNotificationListing () {
 			debugger

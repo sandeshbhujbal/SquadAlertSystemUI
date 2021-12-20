@@ -8,7 +8,7 @@ const ADD_CALENDAR_INPUTS = {
 	date: '',
 	startAndEndDates: [],
 	picNames: [],
-	squadId: '',
+	squadId: ''
 }
 
 export default {
@@ -20,25 +20,32 @@ export default {
 				value: '',
 				text: ''
 			},
-			userObjectList: [{
-                userName: 'Aman Dhaka',
-                userId: '1'
-            },{
-                userName: 'Sandesh Bhujbal',
-                userId: '2'
-            },{
-                userName: 'Shubham Kumar',
-                userId: '3'
-            }, {
-                userName: 'Milan Rathod',
-                userId: '4'
-            },{
-                userName: 'Sujoy Dey',
-                userId: '5'
-            },{
-                userName: 'Vijay Surya Singh',
-                userId: '6'
-            }],
+			userObjectList: [
+				{
+					userName: 'Aman Dhaka',
+					userId: '1'
+				},
+				{
+					userName: 'Sandesh Bhujbal',
+					userId: '2'
+				},
+				{
+					userName: 'Shubham Kumar',
+					userId: '3'
+				},
+				{
+					userName: 'Milan Rathod',
+					userId: '4'
+				},
+				{
+					userName: 'Sujoy Dey',
+					userId: '5'
+				},
+				{
+					userName: 'Vijay Surya Singh',
+					userId: '6'
+				}
+			],
 			usersDetails: [...USER_DETAILS],
 			currentUserName: '',
 			currentSquadName: '',
@@ -65,11 +72,18 @@ export default {
 	methods: {
 		...mapActions('calendarSettingsStore', ['fetchSquadCalendarData', 'addCalendarSchedule']),
 		...mapMutations('utils', ['CURRENT_USER_DATA']),
+		setPICBasedOnSquad () {
+			debugger
+			this.userObjectList = this.usersDetails.filter(item => {
+				return item.squadId === this.currentSquadId
+			})
+			console.log(this.userObjectList)
+		},
 		fetchScheduleData () {
 			const currentUserObject = this.usersDetails.find(item => item.name === this.currentUserName)
 			const queryString = `?squadId=${currentUserObject.squadId}`
 			this.currentSquadName = currentUserObject.squadName
-			this.currentSquadId= currentUserObject.squadId
+			this.currentSquadId = currentUserObject.squadId
 			this.fetchSquadCalendarData({ queryString, success: this.checkCallBack })
 		},
 		refreshCalendar () {
@@ -91,6 +105,7 @@ export default {
 				}
 				this.calendarValues.push(obj)
 			}
+			this.setPICBasedOnSquad()
 		},
 		dateConversion (epcoDate) {
 			var date = new Date(epcoDate)

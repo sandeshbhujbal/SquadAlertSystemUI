@@ -34,9 +34,9 @@
                             size="small">
                             <el-option
                                 v-for="item in userObjectList"
-                                :key="item.userId"
-                                :label="item.userName"
-                                :value="item.userName">
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.name">
                             </el-option>
                         </el-select>
                     </div>

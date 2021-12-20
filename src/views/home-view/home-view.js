@@ -45,7 +45,7 @@ export default {
 		userChanges ({ value }) {
 			this.CURRENT_USER_DATA(value)
 			localStorage.setItem('currenUser', value)
-            this.pollNotificationRegularly(value)
+            this.pollNotificationRegularly()
 			this.$router.push({
 				name: 'PageView'
 			})
@@ -54,13 +54,15 @@ export default {
 			const filters = `?medium=EMAIL&user=${localStorage.getItem('currenUser')}`
 			this.polling = setInterval(() => {
 				this.fetchNotificationForCount({ filters, success: this.handleCreateInboundOrder })
-			}, 9000)
-            this.SET_INTERVAL_COUNTER(this.polling)
+			}, 5000)
+            // this.SET_INTERVAL_COUNTER(this.polling)
+            localStorage.setItem('pollCounter', this.polling)
 		}
 	},
 	created () {
-        clearInterval(this.getIntervalCounter)
-        this.SET_NOTIFICATION_DATA_FOR_COUNT([])
+        // clearInterval(localStorage.getItem('pollCounter'))
+        // localStorage.removeItem('pollCounter')
+        // this.SET_NOTIFICATION_DATA_FOR_COUNT([])
 	},
     computed: {
         ...mapGetters('utils', ['getIntervalCounter'])
