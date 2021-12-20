@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <div class="page__header header row js-space-between ai-center">
-            <h1 class="header__title">Squad Calendar</h1>
+            <h1 class="header__title">{{ currentSquadName }} Calendar</h1>
             <BliButton
                 has-left-icon
                 color="danger"
@@ -20,77 +20,46 @@
             </div>
         </div>
         <div>
-            <BliModal
-                :bli-active.sync="visibleModal"
-                @maskClick="visibleModal = false"
-                placement="mobile-bottom desktop-center">
-                <BliModalContainer class="your-modal-width">
-                    <BliModalClose @close="visibleModal=false" />
-                    <div class="put-your-modal-style-here">
-                        <h4>Add Schedule</h4>
-                        <div class="your-modal-content">
-                            <BliField class="input">
-                                <BliDropdown
-                                    class="dropdown"
-                                    v-model="addCalendarInput.picNames"
-                                    selection
-                                    autoclose
-                                    title="Dropdown title">
-                                    <label slot="label">Select User</label>
-                                    <BliList scrollable>
-                                        <BliListItem
-                                            v-for="item in userObjectList"
-                                            :key="item.id"
-                                            :value="item.userName">
-                                            {{item.userName}}
-                                        </BliListItem>
-                                    </BliList>
-                                </BliDropdown>
-                            </BliField>
-                            <BliField class="input">
-                                <BliDropdown
-                                    v-model="addCalendarInput.startDateTime"
-                                    @trigger="openDatePicker"
-                                    selection
-                                    right-icon>
-                                    <label slot="label">Select Start Date</label>
-                                    <BliIconCalendar slot="right-icon" />
-                                </BliDropdown>
-                                <BliDatepicker
-                                    :ranged="startDateRanged"
-                                    :show-datepicker="showStartDatePicker"
-                                    :time-zone=0
-                                    @selected="updateValue"
-                                    @close="closeDatePicker"
-                                    @maskClick="closeDatePicker" />
-                            </BliField>
-                            <BliField class="input">
-                                <BliDropdown
-                                    v-model="addCalendarInput.endDateTime"
-                                    @trigger="openEndDatePicker"
-                                    selection
-                                    right-icon>
-                                    <label slot="label">Select End Date</label>
-                                    <BliIconCalendar slot="right-icon" />
-                                </BliDropdown>
-                                <BliDatepicker
-                                    :ranged="endDateRanged"
-                                    :show-datepicker="showEndDatePicker"
-                                    :time-zone=0
-                                    @selected="updateEndValue"
-                                    @close="closeEndDatePicker"
-                                    @maskClick="closeEndDatePicker" />
-                            </BliField>
-                        </div>
-                        <div class="your-modal-footer">
-                            <BliButton
-                                color="danger"
-                                outline
-                                @click="() => {saveCalendarSchedule()}">Add Schedule</BliButton>
-                        </div>
+            <el-dialog
+                title="Add Schedule"
+                :visible.sync="centerDialogVisible"
+                width="40%">
+                <div class="modal-wrapper">
+                    <div>
+                        <el-select
+                            class="drop-down-input"
+                            v-model="addCalendarInput.picNames"
+                            multiple
+                            placeholder="Select"
+                            size="small">
+                            <el-option
+                                v-for="item in userObjectList"
+                                :key="item.userId"
+                                :label="item.userName"
+                                :value="item.userName">
+                            </el-option>
+                        </el-select>
                     </div>
-                </BliModalContainer>
-            </BliModal>
+                    <div>
+                        <el-date-picker
+                            v-model="addCalendarInput.startAndEndDates"
+                            type="datetimerange"
+                            range-separator="-"
+                            start-placeholder="Start date"
+                            end-placeholder="End date"
+                            size="small">
+                        </el-date-picker>
+                    </div>
+                </div>
+                <span slot="footer" class="dialog-footer">
+                    <el-button
+                        type="danger"
+                        @click="centerDialogVisible = false">Close</el-button>
+                    <el-button
+                        type="danger"
+                        @click="saveCalendarSchedule">Add Schedule</el-button>
+                </span>
+            </el-dialog>
         </div>
     </div>
 </template>
@@ -98,34 +67,13 @@
 <script src="./calendar-view.js"></script>
 
 <style lang="scss" scoped>
-.input-card {
+.modal-wrapper {
     display: flex;
-    gap: 10px;
-    margin: 10px;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.your-modal-width {
-    max-width: 700px;
-    // !only width, do not write any css style in modal container
-}
-
-.put-your-modal-style-here {
-    padding: 24px;
-
-    .your-modal-content {
-        max-height: calc(100vh - 250px);
-        padding: 10px;
-
-        .input {
-            padding: 10px;
-        }
-    }
-
-    .your-modal-footer {
-        margin-top: 24px;
-        display: flex;
-        gap: 8px;
-        flex-direction: row-reverse;
-    }
+.drop-down-input {
+    width: 75%;
 }
 </style>

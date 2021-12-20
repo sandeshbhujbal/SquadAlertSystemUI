@@ -12,6 +12,7 @@ export default {
 			contents: [],
 			usersDetails: [ ...USER_DETAILS ],
 			currentUserName: '',
+			currentSquadName: '',
 			titles: ['Squad', 'Sent By', 'Sent To', 'Severity', 'Details', 'Summary', 'Status', 'Acknowledge']
 		}
 	},
@@ -25,6 +26,7 @@ export default {
 		...mapMutations('utils', ['CURRENT_USER_DATA']),
 		fetchTableData () {
 			const currentUserObject = this.usersDetails.find(item => item.name === this.currentUserName)
+			this.currentSquadName = currentUserObject.squadName
 			const filters = `?page=0&size=50&squad=${currentUserObject.squadName}&status=OPEN`
 			this.fetchSquadAlertData({ filters, success: this.handleCreateInboundOrder })
 		},
@@ -52,7 +54,7 @@ export default {
             this.fetchTableData()
             this.$toast.open({
 				duration: 5e3,
-				message: 'Paged Successfully',
+				message: 'Acknowledged Successfully',
 				type: 'success'
 			})
         }

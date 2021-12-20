@@ -6,18 +6,9 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 const ADD_CALENDAR_INPUTS = {
 	date: '',
-	endDateTime: {
-		value: '',
-		text: '',
-		sendingValue: ''
-	},
+	startAndEndDates: [],
 	picNames: [],
 	squadId: '',
-	startDateTime: {
-		value: '',
-		text: '',
-		sendingValue: ''
-	}
 }
 
 export default {
@@ -41,6 +32,8 @@ export default {
 			],
 			usersDetails: [...USER_DETAILS],
 			currentUserName: '',
+			currentSquadName: '',
+			currentSquadId: '',
 			calendarValues: [],
 			openModal: false,
 			width: '20%',
@@ -51,6 +44,7 @@ export default {
 			showStartDatePicker: !1,
 			showEndDatePicker: !1,
 			titles: ['Title', 'Title', 'Action'],
+			centerDialogVisible: false,
 			addCalendarInput: { ...ADD_CALENDAR_INPUTS }
 		}
 	},
@@ -65,6 +59,8 @@ export default {
 		fetchScheduleData () {
 			const currentUserObject = this.usersDetails.find(item => item.name === this.currentUserName)
 			const queryString = `?squadId=${currentUserObject.squadId}`
+			this.currentSquadName = currentUserObject.squadName
+			this.currentSquadId= currentUserObject.squadId
 			this.fetchSquadCalendarData({ queryString, success: this.checkCallBack })
 		},
 		refreshCalendar () {
@@ -97,7 +93,7 @@ export default {
 			return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
 		},
 		handleCreateInboundOrder () {
-			this.visibleModal = !0
+			this.centerDialogVisible = true
 		},
 		closeDatePicker () {
 			this.showStartDatePicker = !1
@@ -128,14 +124,16 @@ export default {
 		saveCalendarSchedule () {
 			const payload = {
 				date: new Date().toISOString(),
-				startDateTime: new Date(this.addCalendarInput.startDateTime.sendingValue).toISOString(),
-				endDateTime: new Date(this.addCalendarInput.endDateTime.sendingValue).toISOString(),
-				squadId: '03d7db99-dd18-4935-b220-a249bf5a49b8',
-				picNames: [this.addCalendarInput.picNames.value]
+				startDateTime: new Date(this.addCalendarInput.startAndEndDates[0]).toISOString(),
+				endDateTime: new Date(this.addCalendarInput.startAndEndDates[1]).toISOString(),
+				squadId: this.currentSquadId,
+				picNames: this.addCalendarInput.picNames
 			}
+			debugger
 			this.addCalendarSchedule({ payload, success: this.actionPerformedForAlert })
 		},
 		actionPerformedForAlert () {
+			this.centerDialogVisible = false
 			this.refreshCalendar()
 			this.$toast.open({
 				duration: 5e3,

@@ -21,4 +21,8 @@ export default {
 	fetchNotification: (callback, fail, filters) => { 
         apiCall.makeGetRequest(`${config.api.athens.fetchNotification}${filters}`, callback, fail)
     },
+
+	acknowledgeNotification: (callback, fail, filters) => { 
+        apiCall.makePostRequest(`${config.api.athens.acknowledgeNotification}${filters}`, callback, fail)
+    },
 }

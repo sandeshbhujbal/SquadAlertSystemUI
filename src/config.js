@@ -22,7 +22,8 @@ export default {
 			pagginSquads: `${API_SPM}/page`,
 
 			//notification api's
-			fetchNotification: `${API_SPM}/notification/fetch`
+			fetchNotification: `${API_SPM}/notification/fetch`,
+			acknowledgeNotification: `${API_SPM}/notification/acknowledge`
 		}
 	}
 }

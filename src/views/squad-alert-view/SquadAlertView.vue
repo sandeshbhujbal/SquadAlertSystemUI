@@ -1,12 +1,12 @@
 <template>
     <div class="page">
         <div class="page__header header row js-space-between ai-center">
-            <h1 class="header__title">Squad Alerts</h1>
+            <h1 class="header__title">{{ currentSquadName }} Alerts</h1>
         </div>
         <BliCard
             rounded
             class="table">
-            <h6>Squad Alerts</h6>
+            <h6>{{ currentSquadName }} Alerts</h6>
             <BliTable
                 sort="false"
                 class="inbound-order-list__table custom-table"

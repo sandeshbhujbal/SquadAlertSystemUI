@@ -77,6 +77,17 @@ export default {
 				() => {},
 				filters
 			)
-		}
+		},
+		acknowledgeNotification ({}, { filters, success } = {}) {
+            api.acknowledgeNotification(
+				() => {
+					if (success) {
+						success()
+					}
+				},
+				() => {},
+				filters
+			)
+        }
 	}
 }

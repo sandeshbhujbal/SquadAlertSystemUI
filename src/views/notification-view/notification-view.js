@@ -12,7 +12,8 @@ export default {
 			contents: [],
             usersDetails: [ ...USER_DETAILS ],
 			currentUserName: '',
-			titles: ['PIC Name', 'Medium', 'Summary', 'Details']
+            squadName: '',
+			titles: ['PIC Name', 'Medium', 'Summary', 'Details', 'Acknowledge']
 		}
 	},
 	created () {
@@ -21,7 +22,7 @@ export default {
 		this.fetchTableData()
 	},
 	methods: {
-		...mapActions('pageSettingsStore', ['fetchNotification']),
+		...mapActions('pageSettingsStore', ['fetchNotification', 'acknowledgeNotification']),
         ...mapMutations('utils', ['CURRENT_USER_DATA']),
 		fetchTableData () {
 			const filters = `?medium=EMAIL&user=${this.currentUserName}`
@@ -35,13 +36,14 @@ export default {
 					squad: item.notificationMedium,
 					sentBy: item.summary,
 					sentTo: item.details,
+                    button: 'Acknowledge'
 				}
 				this.contents.push(obj)
 			}
 		},
-        acknowLedgeAlertAction (index) {
-            const filters = `?alertId=${this.getSquadAlertData[index].id}&status=ACKNOWLEDGED`
-            this.acknowledgeAlert({ filters, success: this.actionPerformed})
+        acknowLedgeNotificationAction (index) {
+            const filters = `?notificationId=${this.getNotificationData[index].id}&status=ACKNOWLEDGED`
+            this.acknowledgeNotification({ filters, success: this.actionPerformed})
         },
         actionPerformed() {
             this.fetchTableData()

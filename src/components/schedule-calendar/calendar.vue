@@ -37,14 +37,14 @@
 .vuecal__cell--selected:before {border-color: rgba(66, 185, 131, 0.5);}
 
 .vuecal__event.health {
-    background-color: rgba(255, 102, 102, 0.9);
-    border: 1px solid rgb(235, 82, 82);
+    background-color: rgba(250, 139, 139, 0.9);
+    border: 1px solid rgba(250, 139, 139, 0.9);
     color: #fff;
 }
 
 .vuecal__event.sport {
-    background-color: rgba(255, 102, 102, 0.9);
-    border: 1px solid rgb(235, 82, 82);
+    background-color: rgba(250, 139, 139, 0.9);
+    border: 1px solid rrgba(250, 139, 139, 0.9);
     color: #fff;
 }
 </style>

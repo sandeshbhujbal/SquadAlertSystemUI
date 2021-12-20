@@ -5,6 +5,7 @@ import store from './store'
 import 'element-ui/lib/theme-chalk/index.css';
 import '@blibli/blue-internal/dist/blue-internal.min.css'
 import Blue from '@blibli/blue-internal/dist/blue-internal.min'
+import locale from 'element-ui/lib/locale/lang/en'
 import ElementUI from 'element-ui'
 
 import './assets/scss/main.scss'
@@ -13,7 +14,7 @@ import icons from '@blibli/blue-internal/dist/add-ons/icons'
 
 Vue.use(Blue)
 Vue.use(icons)
-Vue.use(ElementUI)
+Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
 

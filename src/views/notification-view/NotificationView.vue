@@ -15,20 +15,11 @@
                 :items="contents">
                 <template v-for="(item, index) in contents">
                     <BliButton
-                        v-if="item.status === 'OPEN'"
                         :key="item.index"
                         :slot="`button-${index}`"
                         color="danger"
                         size="small"
-                        @click="acknowLedgeAlertAction(index)"> Acknowledge
-                    </BliButton>
-                    <BliButton
-                        v-else
-                        :key="item.index"
-                        :slot="`button-${index}`"
-                        color="danger"
-                        size="small"
-                        disabled> Acknowledge
+                        @click="acknowLedgeNotificationAction(index)"> Acknowledge
                     </BliButton>
                 </template>
             </BliTable>
