@@ -7,31 +7,69 @@
             rounded
             class="table">
             <h6>{{ currentSquadName }} Alerts</h6>
-            <BliTable
-                sort="false"
-                class="inbound-order-list__table custom-table"
-                type="primary"
-                :titles="titles"
-                :items="contents">
-                <template v-for="(item, index) in contents">
-                    <BliButton
-                        v-if="item.status === 'OPEN'"
-                        :key="item.index"
-                        :slot="`button-${index}`"
-                        color="danger"
-                        size="small"
-                        @click="acknowLedgeAlertAction(index)"> Acknowledge
-                    </BliButton>
-                    <BliButton
-                        v-else
-                        :key="item.index"
-                        :slot="`button-${index}`"
-                        color="danger"
-                        size="small"
-                        disabled> Acknowledge
-                    </BliButton>
-                </template>
-            </BliTable>
+            <el-tabs
+                @tab-click="fetchTableData"
+                type="border-card"
+                v-model="activeTabName">
+                <el-tab-pane 
+                    name="Opened Alerts"
+                    label="Opened Alerts">
+                    <BliTable
+                    sort="false"
+                    class="inbound-order-list__table custom-table"
+                    type="primary"
+                    :titles="titles"
+                    :items="contents">
+                    <template v-for="(item, index) in contents">
+                        <BliButton
+                            v-if="item.status === 'OPEN'"
+                            :key="item.index"
+                            :slot="`button-${index}`"
+                            color="danger"
+                            size="small"
+                            @click="acknowLedgeAlertAction(index)"> Acknowledge
+                        </BliButton>
+                        <BliButton
+                            v-else
+                            :key="item.index"
+                            :slot="`button-${index}`"
+                            color="danger"
+                            size="small"
+                            disabled> Acknowledge
+                        </BliButton>
+                    </template>
+                </BliTable>
+                </el-tab-pane>
+                <el-tab-pane 
+                    name="Acknowledge Alerts"
+                    label="Acknowledge Alerts">
+                    <BliTable
+                    sort="false"
+                    class="inbound-order-list__table custom-table"
+                    type="primary"
+                    :titles="titles"
+                    :items="contents">
+                    <template v-for="(item, index) in contents">
+                        <BliButton
+                            v-if="item.status === 'OPEN'"
+                            :key="item.index"
+                            :slot="`button-${index}`"
+                            color="danger"
+                            size="small"
+                            @click="acknowLedgeAlertAction(index)"> Acknowledge
+                        </BliButton>
+                        <BliButton
+                            v-else
+                            :key="item.index"
+                            :slot="`button-${index}`"
+                            color="danger"
+                            size="small"
+                            disabled> Acknowledge
+                        </BliButton>
+                    </template>
+                </BliTable>
+                </el-tab-pane>
+            </el-tabs>
         </BliCard>
     </div>
 </template>

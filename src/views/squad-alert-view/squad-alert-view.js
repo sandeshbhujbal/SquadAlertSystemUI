@@ -13,6 +13,7 @@ export default {
 			usersDetails: [ ...USER_DETAILS ],
 			currentUserName: '',
 			currentSquadName: '',
+			activeTabName: 'Opened Alerts',
 			titles: ['Squad', 'Sent By', 'Sent To', 'Severity', 'Details', 'Summary', 'Status', 'Acknowledge']
 		}
 	},
@@ -27,7 +28,9 @@ export default {
 		fetchTableData () {
 			const currentUserObject = this.usersDetails.find(item => item.name === this.currentUserName)
 			this.currentSquadName = currentUserObject.squadName
-			const filters = `?page=0&size=50&squad=${currentUserObject.squadName}&status=OPEN`
+			const status = this.activeTabName === 'Opened Alerts' ? 'OPEN':'ACKNOWLEDGED'
+			debugger
+			const filters = `?page=0&size=50&squad=${currentUserObject.squadName}&status=${status}`
 			this.fetchSquadAlertData({ filters, success: this.handleCreateInboundOrder })
 		},
 		handleCreateInboundOrder () {

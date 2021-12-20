@@ -71,6 +71,7 @@ export default {
 		},
 
 		checkCallBack () {
+			this.calendarValues.splice(0)
 			for (const item of this.getSquadCalendarData) {
 				const obj = {
 					start: this.dateConversion(item.startDateTime),
