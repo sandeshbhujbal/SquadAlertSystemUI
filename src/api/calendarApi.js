@@ -8,5 +8,9 @@ export default {
 
     addCalendarSchedule: (callback, fail, payload) => { 
         apiCall.makePostRequest(`${config.api.athens.addCalendarSchedule}`, callback, fail, payload)
-    }
+    },
+
+    fetchMyCalendarData: (callback, fail, queryString) => { 
+        apiCall.makeGetRequest(`${config.api.athens.fetchMyCalendarData}${queryString}`, callback, fail)
+    },
 }

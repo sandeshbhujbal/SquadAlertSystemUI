@@ -32,7 +32,7 @@ const router = new VueRouter({
 		{
 			path: '/my-schedule',
 			name: 'MySchedule',
-			component: loadComponent('calendar-view/CalendarView')
+			component: loadComponent('my-calendar-view/MyCalendarView')
 		},
 		{
 			path: '/my-notification',
